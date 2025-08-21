@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía Colaborativa Git - Windows Forms</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #34495e;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a3a, #2c3e50);
+            color: #333;
+            line-height: 1.6;
+            padding-bottom: 50px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), #1a2a3a);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            border-bottom: 5px solid var(--warning);
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        
+        header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        header p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 20px 0;
+        }
+        
+        .logo {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            width: 100px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .logo i {
+            font-size: 4rem;
+            color: var(--primary);
+        }
+        
+        section {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            margin-bottom: 2.5rem;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        
+        section:hover {
+            transform: translateY(-5px);
+        }
+        
+        .section-header {
+            background: linear-gradient(135deg, var(--dark), var(--primary));
+            color: white;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .section-header i {
+            font-size: 1.8rem;
+        }
+        
+        .section-content {
+            padding: 2rem;
+        }
+        
+        .box {
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 10px;
+            border-left: 5px solid;
+        }
+        
+        .warning-box {
+            background-color: rgba(243, 156, 18, 0.15);
+            border-color: var(--warning);
+        }
+        
+        .danger-box {
+            background-color: rgba(231, 76, 60, 0.15);
+            border-color: var(--danger);
+        }
+        
+        .success-box {
+            background-color: rgba(39, 174, 96, 0.15);
+            border-color: var(--success);
+        }
+        
+        .info-box {
+            background-color: rgba(52, 152, 219, 0.15);
+            border-color: var(--secondary);
+        }
+        
+        .step {
+            display: flex;
+            margin-bottom: 1.8rem;
+            padding-bottom: 1.8rem;
+            border-bottom: 1px solid #eee;
+            align-items: flex-start;
+        }
+        
+        .step-number {
+            background: var(--secondary);
+            color: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.4rem;
+            flex-shrink: 0;
+            margin-right: 20px;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+        }
+        
+        .step-content {
+            flex-grow: 1;
+        }
+        
+        .step-content h3 {
+            margin-bottom: 0.8rem;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .step-content h3 i {
+            color: var(--secondary);
+        }
+        
+        .vs-container {
+            display: flex;
+            gap: 30px;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .vs-step {
+            flex: 1;
+            min-width: 300px;
+            background: var(--light);
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .vs-step h4 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .vs-step img {
+            max-width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-top: 15px;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+        }
+        
+        .placeholder-img {
+            background: #e0e0e0;
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 5px;
+            margin-top: 15px;
+            color: #777;
+            font-style: italic;
+        }
+        
+        .branch-diagram {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 2.5rem 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        
+        .branch-line {
+            width: 4px;
+            height: 60px;
+            background: var(--dark);
+            position: relative;
+        }
+        
+        .branch-line::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 12px;
+            height: 12px;
+            background: var(--dark);
+            border-radius: 50%;
+        }
+        
+        .branch-container {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+        
+        .branch {
+            background: var(--light);
+            padding: 15px 25px;
+            border-radius: 8px;
+            min-width: 150px;
+            text-align: center;
+            position: relative;
+            font-weight: bold;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+        }
+        
+        .branch::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 20px;
+            background: var(--dark);
+        }
+        
+        .branch.main {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .branch.feature {
+            background: var(--secondary);
+            color: white;
+        }
+        
+        .branch-list {
+            list-style-type: none;
+            padding-left: 25px;
+        }
+        
+        .branch-list li {
+            margin-bottom: 12px;
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .branch-list li::before {
+            content: '✔';
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: bold;
+        }
+        
+        .workflow-steps {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 2.5rem 0;
+            justify-content: center;
+        }
+        
+        .workflow-step {
+            flex: 0 0 calc(33.333% - 20px);
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 2px solid var(--light);
+            min-width: 280px;
+        }
+        
+        .workflow-step::after {
+            content: '➔';
+            position: absolute;
+            right: -25px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            color: var(--secondary);
+        }
+        
+        .workflow-step:last-child::after {
+            display: none;
+        }
+        
+        .workflow-step .icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--secondary);
+        }
+        
+        .command {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1.2rem 0;
+            font-family: 'Consolas', monospace;
+            overflow-x: auto;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+        }
+        
+        .cmd {
+            color: #f39c12;
+        }
+        
+        .solution-explorer {
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            width: 280px;
+            font-family: 'Consolas', monospace;
+            margin: 1.5rem 0;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+        }
+        
+        .solution-header {
+            background: #e0e0e0;
+            padding: 10px 15px;
+            font-weight: bold;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .solution-item {
+            padding: 8px 15px 8px 30px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .solution-item:last-child {
+            border-bottom: none;
+        }
+        
+        .solution-item::before {
+            content: '📄';
+            margin-right: 10px;
+        }
+        
+        .solution-item.folder::before {
+            content: '📁';
+        }
+        
+        .solution-item.folder {
+            font-weight: bold;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2.5rem 0;
+            background: var(--dark);
+            color: white;
+            margin-top: 3rem;
+            border-top: 5px solid var(--warning);
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin: 0 5px;
+        }
+        
+        .badge-warning {
+            background: var(--warning);
+            color: white;
+        }
+        
+        .badge-danger {
+            background: var(--danger);
+            color: white;
+        }
+        
+        .badge-success {
+            background: var(--success);
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .workflow-step {
+                flex: 0 0 100%;
+            }
+            
+            .workflow-step::after {
+                display: none;
+            }
+            
+            .vs-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1><i class="fas fa-users"></i> Guía de Trabajo Colaborativo con Git</h1>
+            <p>Para proyectos de Windows Forms en C# con Visual Studio</p>
+            
+            <div class="logo-container">
+                <div class="logo">
+                    <i class="fab fa-windows"></i>
+                </div>
+                <div class="logo">
+                    <i class="fas fa-window-maximize"></i>
+                </div>
+                <div class="logo">
+                    <i class="fab fa-git-alt"></i>
+                </div>
+                <div class="logo">
+                    <i class="fab fa-microsoft"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <section>
+            <div class="section-header">
+                <i class="fas fa-exclamation-triangle"></i>
+                <h2>¿Por qué necesitamos esta guía?</h2>
+            </div>
+            <div class="section-content">
+                <p>Cuando trabajamos en equipo en un proyecto de Windows Forms con C# usando Git, es común enfrentar problemas como:</p>
+                
+                <div class="danger-box">
+                    <p><i class="fas fa-times-circle"></i> <strong>Errores al subir cambios</strong> porque otros miembros del equipo han realizado modificaciones que no tenemos en nuestra copia local.</p>
+                </div>
+                
+                <div class="danger-box">
+                    <p><i class="fas fa-exclamation-circle"></i> <strong>Conflictos de fusión</strong> cuando dos personas modifican el mismo archivo.</p>
+                </div>
+                
+                <div class="danger-box">
+                    <p><i class="fas fa-trash-alt"></i> <strong>Pérdida de trabajo</strong> al intentar resolver conflictos de manera incorrecta.</p>
+                </div>
+                
+                <div class="success-box">
+                    <p><i class="fas fa-check-circle"></i> Esta guía te mostrará el <strong>flujo de trabajo correcto en Visual Studio</strong> para evitar estos problemas y trabajar eficientemente en equipo.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section>
+            <div class="section-header">
+                <i class="fas fa-crown"></i>
+                <h2>Regla de Oro del Trabajo Colaborativo</h2>
+            </div>
+            <div class="section-content">
+                <div class="warning-box">
+                    <p><i class="fas fa-ban"></i> <strong>¡NUNCA trabajes directamente en la rama principal (main/master) en Visual Studio!</strong></p>
+                </div>
+                
+                <p>Todos los cambios deben hacerse en <strong>ramas separadas</strong> dedicadas a características específicas o correcciones de errores. Esto te permite:</p>
+                
+                <ul class="branch-list">
+                    <li>Aislar tu trabajo del de los demás</li>
+                    <li>Evitar conflictos innecesarios</li>
+                    <li>Probar tus cambios sin afectar el proyecto principal</li>
+                    <li>Revisar el trabajo antes de integrarlo</li>
+                </ul>
+                
+                <div class="branch-diagram">
+                    <div class="branch main">Rama Main</div>
+                    <div class="branch-line"></div>
+                    <div class="branch-container">
+                        <div class="branch feature">Feature A</div>
+                        <div class="branch feature">Feature B</div>
+                        <div class="branch feature">Fix C</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section>
+            <div class="section-header">
+                <i class="fas fa-sync-alt"></i>
+                <h2>Flujo de Trabajo Correcto en Visual Studio</h2>
+            </div>
+            <div class="section-content">
+                <p>Sigue estos pasos CADA VEZ que vayas a trabajar en el proyecto usando Visual Studio:</p>
+                
+                <div class="workflow-steps">
+                    <div class="workflow-step">
+                        <div class="icon"><i class="fas fa-cloud-download-alt"></i></div>
+                        <h3>Sincronizar con el Repositorio</h3>
+                        <p>Asegúrate de tener la última versión del proyecto</p>
+                        <div class="vs-container">
+                            <div class="vs-step">
+                                <h4><i class="fas fa-desktop"></i> En Visual Studio:</h4>
+                                <p>1. Abre el proyecto</p>
+                                <p>2. Ve a <strong>Git > Pull</strong></p>
+                                <p>3. O haz clic en el ícono de flecha hacia abajo en la barra de Git</p>
+                                <div class="placeholder-img">Vista de Pull en VS</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="workflow-step">
+                        <div class="icon"><i class="fas fa-code-branch"></i></div>
+                        <h3>Crear Nueva Rama</h3>
+                        <p>Crea una rama descriptiva para tu tarea</p>
+                        <div class="vs-container">
+                            <div class="vs-step">
+                                <h4><i class="fas fa-desktop"></i> En Visual Studio:</h4>
+                                <p>1. Haz clic en el nombre de la rama actual (abajo a la derecha)</p>
+                                <p>2. Selecciona <strong>Nueva rama...</strong></p>
+                                <p>3. Escribe el nombre (ej: feature/login-screen)</p>
+                                <p>4. Haz clic en <strong>Crear</strong></p>
+                                <div class="placeholder-img">Crear rama en VS</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="workflow-step">
+                        <div class="icon"><i class="fas fa-laptop-code"></i></div>
+                        <h3>Trabajar en tu Rama</h3>
+                        <p>Realiza tus cambios en los formularios</p>
+                        <div class="vs-container">
+                            <div class="vs-step">
+                                <h4><i class="fas fa-desktop"></i> En Visual Studio:</h4>
+                                <p>1. Verifica que estás en tu rama (abajo a la derecha)</p>
+                                <p>2. Modifica formularios (.cs, .Designer.cs)</p>
+                                <p>3. Agrega nuevas clases según sea necesario</p>
+                                <div class="placeholder-img">Trabajando en formulario</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="workflow-step">
+                        <div class="icon"><i class="fas fa-save"></i></div>
+                        <h3>Hacer Commits</h3>
+                        <p>Guarda tus cambios con mensajes descriptivos</p>
+                        <div class="vs-container">
+                            <div class="vs-step">
+                                <h4><i class="fas fa-desktop"></i> En Visual Studio:</h4>
+                                <p>1. Abre <strong>Team Explorer</strong></p>
+                                <p>2. Ve a <strong>Changes</strong></p>
+                                <p>3. Escribe un mensaje descriptivo</p>
+                                <p>4. Haz clic en <strong>Commit All</strong></p>
+                                <div class="placeholder-img">Commit en VS</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="workflow-step">
+                        <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
+                        <h3>Subir tu Rama</h3>
+                        <p>Envía tu rama al repositorio remoto</p>
+                        <div class="vs-container">
+                            <div class="vs-step">
+                                <h4><i class="fas fa-desktop"></i> En Visual Studio:</h4>
+                                <p>1. En <strong>Team Explorer</strong> ve a <strong>Sync</strong></p>
+                                <p>2. Haz clic en <strong>Push</strong></p>
+                                <p>3. Si es primera vez: <strong>Publish branch</strong></p>
+                                <div class="placeholder-img">Push en VS</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="workflow-step">
+                        <div class="icon"><i class="fas fa-code-merge"></i></div>
+                        <h3>Crear Pull Request</h3>
+                        <p>Solicita integrar tus cambios con main</p>
+                        <div class="vs-container">
+                            <div class="vs-step">
+                                <h4><i class="fas fa-desktop"></i> En Visual Studio:</h4>
+                                <p>1. Ve a <strong>Git > View Pull Requests</strong></p>
+                                <p>2. Haz clic en <strong>New Pull Request</strong></p>
+                                <p>3. Completa los detalles y crea el PR</p>
+                                <div class="placeholder-img">Pull Request en VS</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="warning-box">
+                    <p><i class="fas fa-exclamation-circle"></i> <strong>IMPORTANTE:</strong> Nunca hagas commit directamente a la rama main. Siempre usa ramas y Pull Requests.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section>
+            <div class="section-header">
+                <i class="fas fa-exclamation-triangle"></i>
+                <h2>¿Qué hacer si cometiste un error?</h2>
+            </div>
+            <div class="section-content">
+                <h3>Caso 1: Trabajaste en main por error</h3>
+                <div class="danger-box">
+                    <p><i class="fas fa-bug"></i> Si te diste cuenta que estás trabajando en main en lugar de una rama:</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3><i class="fas fa-stop-circle"></i> Detener todo</h3>
+                        <p>No hagas commit de los cambios. Si ya hiciste commit, no hagas push.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3><i class="fas fa-code-branch"></i> Crear una rama nueva</h3>
+                        <p>Crea una rama a partir de tus cambios actuales:</p>
+                        <div class="vs-container">
+                            <div class="vs-step">
+                                <h4><i class="fas fa-desktop"></i> En Visual Studio:</h4>
+                                <p>1. Haz clic en el nombre de rama (main)</p>
+                                <p>2. Selecciona <strong>Nueva rama...</strong></p>
+                                <p>3. Dale un nombre (ej: salvadora-123)</p>
+                                <p>4. Marca <strong>Checkout branch</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3><i class="fas fa-broom"></i> Limpiar la rama main</h3>
+                        <p>Vuelve a main y elimina los cambios no deseados:</p>
+                        <div class="vs-container">
+                            <div class="vs-step">
+                                <h4><i class="fas fa-desktop"></i> En Visual Studio:</h4>
+                                <p>1. Ve a <strong>Team Explorer > Changes</strong></p>
+                                <p>2. Haz clic derecho en los archivos modificados</p>
+                                <p>3. Selecciona <strong>Undo Changes...</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3><i class="fas fa-play-circle"></i> Continuar en la rama nueva</h3>
+                        <p>Ahora puedes trabajar normalmente en la rama que creaste</p>
+                    </div>
+                </div>
+                
+                <h3>Caso 2: Hay conflictos al hacer pull</h3>
+                <div class="danger-box">
+                    <p><i class="fas fa-fire"></i> Si intentas hacer push y Git te dice que hay cambios nuevos:</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3><i class="fas fa-brain"></i> No entres en pánico</h3>
+                        <p>Es normal cuando trabajan varias personas.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3><i class="fas fa-cloud-download-alt"></i> Trae los cambios remotos</h3>
+                        <p>Desde tu rama, haz pull primero:</p>
+                        <div class="vs-container">
+                            <div class="vs-step">
+                                <h4><i class="fas fa-desktop"></i> En Visual Studio:</h4>
+                                <p>1. Ve a <strong>Git > Pull</strong></p>
+                                <p>2. Esto detectará conflictos automáticamente</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3><i class="fas fa-hands-helping"></i> Resuelve los conflictos</h3>
+                        <p>Visual Studio te mostrará los archivos con conflictos:</p>
+                        <div class="vs-container">
+                            <div class="vs-step">
+                                <h4><i class="fas fa-desktop"></i> En Visual Studio:</h4>
+                                <p>1. Ve a <strong>Team Explorer > Changes</strong></p>
+                                <p>2. Haz clic en <strong>Conflicts</strong></p>
+                                <p>3. Selecciona un archivo y haz clic en <strong>Merge</strong></p>
+                                <p>4. Usa la herramienta de fusión para resolver</p>
+                                <div class="placeholder-img">Resolución de conflictos</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3><i class="fas fa-check-circle"></i> Completa la fusión</h3>
+                        <p>Después de resolver todos los conflictos:</p>
+                        <div class="vs-container">
+                            <div class="vs-step">
+                                <h4><i class="fas fa-desktop"></i> En Visual Studio:</h4>
+                                <p>1. Haz clic en <strong>Accept Merge</strong></p>
+                                <p>2. Haz commit de los cambios de fusión</p>
+                                <p>3. Finalmente haz push de tus cambios</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section>
+            <div class="section-header">
+                <i class="fas fa-lightbulb"></i>
+                <h2>Recomendaciones para Proyectos Windows Forms</h2>
+            </div>
+            <div class="section-content">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3><i class="fas fa-file-code"></i> Eviten modificar el mismo formulario</h3>
+                        <p>Si dos personas trabajan en el mismo Form.cs y Form.Designer.cs, los conflictos son casi inevitables. Coordinen quién trabaja en cada formulario.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3><i class="fas fa-ban"></i> Usen el archivo .gitignore</h3>
+                        <p>Asegúrense de que su .gitignore excluya archivos generados:</p>
+                        <div class="solution-explorer">
+                            <div class="solution-header">Solution Explorer</div>
+                            <div class="solution-item folder">MiProyecto</div>
+                            <div class="solution-item">.gitignore <span class="badge badge-success">Importante</span></div>
+                        </div>
+                        <div class="command">
+                            # Archivos de Visual Studio<br>
+                            bin/<br>
+                            obj/<br>
+                            *.user<br>
+                            *.suo<br>
+                            *.cache<br>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3><i class="fas fa-history"></i> Hagan commits pequeños y frecuentes</h3>
+                        <p>Es mejor hacer varios commits pequeños que uno grande al final. Facilita la resolución de conflictos.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3><i class="fas fa-vial"></i> Prueben antes de hacer push</h3>
+                        <p>Compilen y ejecuten su proyecto después de traer cambios y antes de enviar los suyos.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h3><i class="fas fa-comments"></i> Comunicación</h3>
+                        <p>Si van a trabajar en áreas relacionadas, coordínense para evitar conflictos.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section>
+            <div class="section-header">
+                <i class="fas fa-clipboard-list"></i>
+                <h2>Resumen de Pasos Clave</h2>
+            </div>
+            <div class="section-content">
+                <div class="success-box">
+                    <p><i class="fas fa-play"></i> Al comenzar a trabajar:</p>
+                    <ol>
+                        <li><strong>Verifica que estás en main</strong> (abajo a la derecha en VS)</li>
+                        <li><strong>Haz Pull</strong> (Git > Pull)</li>
+                        <li><strong>Crea una nueva rama</strong> con nombre descriptivo</li>
+                    </ol>
+                </div>
+                
+                <div class="success-box">
+                    <p><i class="fas fa-stop"></i> Al terminar una tarea:</p>
+                    <ol>
+                        <li><strong>Haz Commit</strong> en tu rama (Team Explorer > Changes)</li>
+                        <li><strong>Haz Push</strong> de tu rama (Sync > Push)</li>
+                        <li><strong>Crea un Pull Request</strong> (Git > View Pull Requests)</li>
+                    </ol>
+                </div>
+                
+                <div class="warning-box">
+                    <p><i class="fas fa-exclamation-triangle"></i> Recuerden: ¡Nunca trabajen directamente en main! ¡Siempre usen ramas!</p>
+                </div>
+                
+                <p>Mantén esta guía abierta mientras trabajas en tu proyecto colaborativo.</p>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p><i class="fas fa-graduation-cap"></i> Guía de Trabajo Colaborativo con Git para Proyectos Windows Forms | C# | Visual Studio</p>
+            <p>© 2023 - Para uso educativo | Actualizada para Visual Studio 2022</p>
+        </div>
+    </footer>
+</body>
+</html>

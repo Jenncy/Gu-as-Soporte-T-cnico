@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Menú Inicial</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #4facfe, #00f2fe);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    h1 {
+      color: white;
+      margin-bottom: 40px;
+    }
+
+    .menu {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .menu a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
+      background: white;
+      color: #333;
+      font-size: 18px;
+      font-weight: bold;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+      transition: transform 0.2s, background 0.2s;
+    }
+
+    .menu a:hover {
+      background: #333;
+      color: white;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <h1>Guías Informática</h1>
+  <div class="menu">
+    <a href="Impresoras.html">Limpieza de Impresoras</a>
+    <a href="Relleno de Tinta - Impresora.html">Relleno Cartuchos de Impresoras</a>
+    <a href="Limpieza de laptops.html">Mantenimiento de Laptop</a>
+    <a href="Guía Trabajo Colaborativo.html">Trabajo colaborativo en C# - GitHub</a>
+  </div>
+</body>
+</html>

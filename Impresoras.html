@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía Educativa sobre Impresoras</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(90deg, #2c3e50, #4a6491);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            border-bottom: 5px solid #3498db;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        .nav-container {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: center;
+            padding: 15px 0;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: #2c3e50;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        nav a:hover, nav a.active {
+            background: linear-gradient(90deg, #3498db, #2c3e50);
+            color: white;
+        }
+        
+        section {
+            background-color: white;
+            border-radius: 10px;
+            margin: 30px 0;
+            padding: 40px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        h2 {
+            color: #2c3e50;
+            border-left: 5px solid #3498db;
+            padding-left: 15px;
+            margin-bottom: 25px;
+            font-size: 2rem;
+        }
+        
+        h3 {
+            color: #3498db;
+            margin: 20px 0 15px;
+            font-size: 1.5rem;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+        
+        .card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .card i {
+            font-size: 2.5rem;
+            color: #3498db;
+            margin-bottom: 15px;
+        }
+        
+        .card h4 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        .printer-types {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        .printer-type {
+            flex: 1;
+            min-width: 250px;
+            background: linear-gradient(135deg, #f1f8ff 0%, #e3f2fd 100%);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+        
+        .printer-type h4 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        .printer-type h4 i {
+            color: #3498db;
+        }
+        
+        .problem-list {
+            background-color: #f8f9fa;
+            border-left: 4px solid #e74c3c;
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+        }
+        
+        .problem-list li {
+            margin-bottom: 12px;
+            padding-left: 10px;
+            list-style-type: none;
+            position: relative;
+        }
+        
+        .problem-list li:before {
+            content: "•";
+            color: #e74c3c;
+            font-size: 1.5rem;
+            position: absolute;
+            left: -15px;
+            top: -5px;
+        }
+        
+        .solution-box {
+            background-color: #e8f4f8;
+            border-left: 4px solid #3498db;
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+        }
+        
+        .solution-box li {
+            margin-bottom: 12px;
+            padding-left: 10px;
+            list-style-type: none;
+            position: relative;
+        }
+        
+        .solution-box li:before {
+            content: "✓";
+            color: #27ae60;
+            font-weight: bold;
+            position: absolute;
+            left: -15px;
+        }
+        
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .tip-item {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            padding: 20px;
+            border-radius: 8px;
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+        }
+        
+        .tip-item i {
+            font-size: 1.8rem;
+            color: #3498db;
+            margin-top: 5px;
+        }
+        
+        .tip-content h4 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        footer {
+            background: linear-gradient(90deg, #2c3e50, #4a6491);
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 40px;
+        }
+        
+        footer p {
+            margin: 10px 0;
+            opacity: 0.9;
+        }
+        
+        .highlight {
+            background-color: #fffacd;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+        
+        @media (max-width: 768px) {
+            nav {
+                flex-wrap: wrap;
+            }
+            
+            nav a {
+                margin: 5px;
+                padding: 8px 15px;
+            }
+            
+            section {
+                padding: 25px;
+            }
+            
+            header h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="nav-container">
+        <nav>
+            <a href="#introduccion" class="active">Introducción</a>
+            <a href="#funcionamiento">Funcionamiento</a>
+            <a href="#tipos">Tipos de Impresoras</a>
+            <a href="#fallas">Fallas Comunes</a>
+            <a href="#soluciones">Soluciones</a>
+            <a href="#mantenimiento">Mantenimiento</a>
+        </nav>
+    </div>
+    
+    <div class="container">
+        <section id="introduccion">
+            <h2>Introducción a las Impresoras</h2>
+            <p>Las impresoras son dispositivos periféricos esenciales que nos permiten obtener una copia física de documentos digitales, imágenes u otros contenidos. Desde su invención en los años 50, han evolucionado enormemente, mejorando en velocidad, calidad y funcionalidad.</p>
+            
+            <div class="card-container">
+                <div class="card">
+                    <i class="fas fa-history"></i>
+                    <h4>Evolución Histórica</h4>
+                    <p>La primera impresora fue creada por Remington-Rand en 1953. Las impresoras matriciales dominaron los años 70-80, seguidas por las de inyección de tinta en los 90 y las láser a partir del 2000.</p>
+                </div>
+                
+                <div class="card">
+                    <i class="fas fa-cogs"></i>
+                    <h4>Importancia Actual</h4>
+                    <p>Aunque vivimos en una era digital, las impresoras siguen siendo cruciales en entornos educativos, oficinas, comercios y para trámites oficiales que requieren documentación física.</p>
+                </div>
+                
+                <div class="card">
+                    <i class="fas fa-chart-line"></i>
+                    <h4>Avances Tecnológicos</h4>
+                    <p>Las impresoras modernas incorporan Wi-Fi, impresión móvil, escaneo 3D, sistemas de tinta continua y tecnología ecológica que reduce el consumo energético y de materiales.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="funcionamiento">
+            <h2>¿Cómo Funciona una Impresora?</h2>
+            <p>El proceso de impresión varía según la tecnología, pero todas las impresoras comparten un flujo básico de trabajo:</p>
+            
+            <div class="card-container">
+                <div class="card">
+                    <i class="fas fa-laptop"></i>
+                    <h4>1. Recepción de Datos</h4>
+                    <p>La impresora recibe datos digitales desde un computador, dispositivo móvil o memoria USB a través de conexiones físicas (USB) o inalámbricas (Wi-Fi, Bluetooth).</p>
+                </div>
+                
+                <div class="card">
+                    <i class="fas fa-microchip"></i>
+                    <h4>2. Procesamiento</h4>
+                    <p>Un procesador interno interpreta los datos y los convierte en instrucciones precisas para los componentes de impresión, utilizando lenguajes como PCL o PostScript.</p>
+                </div>
+                
+                <div class="card">
+                    <i class="fas fa-print"></i>
+                    <h4>3. Mecanismo de Impresión</h4>
+                    <p>Dependiendo de la tecnología (inyección, láser, impacto), el dispositivo aplica tinta o tóner al papel siguiendo el patrón del documento.</p>
+                </div>
+            </div>
+            
+            <h3>Componentes Clave</h3>
+            <p>Todas las impresoras comparten componentes esenciales:</p>
+            <ul class="problem-list">
+                <li><span class="highlight">Cabezal de impresión:</span> Aplica la tinta al papel (en impresoras de inyección)</li>
+                <li><span class="highlight">Fusor:</span> Calienta y fija el tóner al papel (en impresoras láser)</li>
+                <li><span class="highlight">Rodillos de alimentación:</span> Mueven el papel a través de la impresora</li>
+                <li><span class="highlight">Cartuchos/Tóner:</span> Contienen la tinta o polvo para imprimir</li>
+                <li><span class="highlight">Bandejas:</span> Almacenan y alimentan el papel</li>
+                <li><span class="highlight">Electrónica de control:</span> Procesa los datos y controla los movimientos</li>
+            </ul>
+        </section>
+        
+        <section id="tipos">
+            <h2>Tipos de Impresoras</h2>
+            <p>Existen diversas tecnologías de impresión, cada una con sus ventajas y aplicaciones específicas:</p>
+            
+            <div class="printer-types">
+                <div class="printer-type">
+                    <h4><i class="fas fa-tint"></i> Inyección de Tinta</h4>
+                    <p>Rocían minúsculas gotas de tinta líquida sobre el papel. Ideales para fotografía y uso doméstico.</p>
+                    <p><strong>Ventajas:</strong> Calidad fotográfica, costo inicial bajo, impresión a color económica.</p>
+                    <p><strong>Desventajas:</strong> Tinta cara, velocidad moderada, impresiones pueden mancharse con agua.</p>
+                </div>
+                
+                <div class="printer-type">
+                    <h4><i class="fas fa-fire"></i> Láser</h4>
+                    <p>Utilizan un láser para fijar tóner (polvo) al papel mediante calor. Perfectas para oficinas.</p>
+                    <p><strong>Ventajas:</strong> Alta velocidad, bajo costo por página, impresiones resistentes al agua.</p>
+                    <p><strong>Desventajas:</strong> Mayor costo inicial, menos calidad fotográfica que inyección.</p>
+                </div>
+                
+                <div class="printer-type">
+                    <h4><i class="fas fa-print"></i> Matricial (de Impacto)</h4>
+                    <p>Imprimen golpeando una cinta entintada con agujas. Usadas para facturas y formularios continuos.</p>
+                    <p><strong>Ventajas:</strong> Bajo costo de operación, imprimen en papel autocopiante, muy duraderas.</p>
+                    <p><strong>Desventajas:</strong> Ruidosas, calidad limitada, solo monocromáticas.</p>
+                </div>
+                
+                <div class="printer-type">
+                    <h4><i class="fas fa-cube"></i> Impresoras 3D</h4>
+                    <p>Crean objetos tridimensionales depositando material capa por capa. Revolucionan diseño y fabricación.</p>
+                    <p><strong>Tecnologías:</strong> FDM (modelado por deposición fundida), SLA (estereolitografía), SLS (sinterizado selectivo por láser).</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="fallas">
+            <h2>Fallas Comunes de Impresoras</h2>
+            <p>Estos son los problemas más frecuentes que encontrarás al trabajar con impresoras:</p>
+            
+            <h3>Problemas de Alimentación de Papel</h3>
+            <ul class="problem-list">
+                <li><span class="highlight">Atascos de papel:</span> Papel atorado en el camino de impresión</li>
+                <li><span class="highlight">Alimentación múltiple:</span> La impresora toma varias hojas a la vez</li>
+                <li><span class="highlight">No detecta papel:</span> La impresora indica que no hay papel aunque la bandeja esté llena</li>
+                <li><span class="highlight">Papel arrugado:</span> Las hojas salen dobladas o arrugadas</li>
+            </ul>
+            
+            <h3>Problemas de Calidad de Impresión</h3>
+            <ul class="problem-list">
+                <li><span class="highlight">Líneas o rayas:</span> Aparecen líneas horizontales o verticales en la impresión</li>
+                <li><span class="highlight">Impresión borrosa:</span> Texto o imágenes sin definición</li>
+                <li><span class="highlight">Manchas de tinta/tóner:</span> Puntos o áreas con exceso de tinta</li>
+                <li><span class="highlight">Colores faltantes:</span> Ausencia de uno o más colores en impresiones a color</li>
+                <li><span class="highlight">Impresión fantasma:</span> Aparecen imágenes débiles donde no deberían estar</li>
+            </ul>
+            
+            <h3>Problemas de Hardware</h3>
+            <ul class="problem-list">
+                <li><span class="highlight">Cartuchos no reconocidos:</span> La impresora no detecta los cartuchos instalados</li>
+                <li><span class="highlight">Ruidos extraños:</span> Chirridos, golpes o ruidos mecánicos anormales</li>
+                <li><span class="highlight">Sobrecalentamiento:</span> La impresora se apaga por temperatura excesiva</li>
+                <li><span class="highlight">Luces de error:</span> Indicadores luminosos que señalan fallos específicos</li>
+            </ul>
+            
+            <h3>Problemas de Software y Conectividad</h3>
+            <ul class="problem-list">
+                <li><span class="highlight">Impresora no responde:</span> Los trabajos no se envían o quedan en cola</li>
+                <li><span class="highlight">Problemas de drivers:</span> Software desactualizado o incompatible</li>
+                <li><span class="highlight">Conexión de red fallida:</span> Problemas con Wi-Fi o conexión Ethernet</li>
+                <li><span class="highlight">Impresión lenta:</span> Demora excesiva en procesar documentos</li>
+            </ul>
+        </section>
+        
+        <section id="soluciones">
+            <h2>Soluciones a Fallas Comunes</h2>
+            <p>Muchos problemas tienen soluciones simples que puedes implementar antes de llamar a un técnico:</p>
+            
+            <h3>Soluciones para Problemas de Papel</h3>
+            <ul class="solution-box">
+                <li><strong>Atascos:</strong> Apaga la impresora, abre las cubiertas y extrae el papel suavemente en la dirección de impresión.</li>
+                <li><strong>Alimentación múltiple:</strong> Verifica que el papel no esté pegado, usa papel de calidad, ajusta las guías laterales.</li>
+                <li><strong>No detecta papel:</strong> Limpia los sensores de papel con un paño seco, asegura que el papel no esté doblado.</li>
+            </ul>
+            
+            <h3>Soluciones para Problemas de Calidad</h3>
+            <ul class="solution-box">
+                <li><strong>Líneas/rayas:</strong> Ejecuta la utilidad de limpieza de cabezales (impresoras de tinta), reemplaza cartuchos vacíos.</li>
+                <li><strong>Impresión borrosa:</strong> Verifica la resolución configurada, realiza calibración de color, limpia el cabezal.</li>
+                <li><strong>Manchas:</strong> Limpia rodillos y componentes internos, usa papel adecuado para el tipo de impresora.</li>
+                <li><strong>Falta de color:</strong> Revisa niveles de tinta, realiza limpieza de boquillas, reemplaza cartuchos agotados.</li>
+            </ul>
+            
+            <h3>Soluciones para Problemas de Hardware</h3>
+            <ul class="solution-box">
+                <li><strong>Cartuchos no reconocidos:</strong> Retira y reinstala los cartuchos, limpia los contactos eléctricos.</li>
+                <li><strong>Ruidos extraños:</strong> Apaga la impresora, verifica obstrucciones en el mecanismo, aplica lubricante especial en partes móviles si es necesario.</li>
+                <li><strong>Sobrecalentamiento:</strong> Apaga la impresora 30 minutos, asegura ventilación adecuada, limpia ventiladores y rejillas.</li>
+            </ul>
+            
+            <h3>Soluciones para Problemas de Software</h3>
+            <ul class="solution-box">
+                <li><strong>Impresora no responde:</strong> Reinicia la impresora y el computador, borra la cola de impresión.</li>
+                <li><strong>Problemas de drivers:</strong> Descarga e instala los drivers más recientes del sitio oficial.</li>
+                <li><strong>Conexión de red:</strong> Verifica que la impresora esté en la misma red, reinicia el router, actualiza firmware.</li>
+            </ul>
+        </section>
+        
+        <section id="mantenimiento">
+            <h2>Mantenimiento Preventivo</h2>
+            <p>Un mantenimiento regular puede prevenir hasta el 80% de las fallas comunes:</p>
+            
+            <div class="tips-grid">
+                <div class="tip-item">
+                    <i class="fas fa-sync-alt"></i>
+                    <div class="tip-content">
+                        <h4>Limpieza Regular</h4>
+                        <p>Limpia exterior e interior con paño seco o ligeramente humedecido. Usa aire comprimido para eliminar polvo de componentes internos. Nunca uses alcohol o solventes agresivos.</p>
+                    </div>
+                </div>
+                
+                <div class="tip-item">
+                    <i class="fas fa-tint"></i>
+                    <div class="tip-content">
+                        <h4>Impresión Periódica</h4>
+                        <p>Imprime al menos una página a color y otra en blanco y negro cada semana para evitar que los cabezales se sequen (impresoras de tinta).</p>
+                    </div>
+                </div>
+                
+                <div class="tip-item">
+                    <i class="fas fa-file-alt"></i>
+                    <div class="tip-content">
+                        <h4>Papel Adecuado</h4>
+                        <p>Usa papel de calidad recomendado por el fabricante. Evita papel húmedo, arrugado o con polvo. Almacénalo en lugar seco y plano.</p>
+                    </div>
+                </div>
+                
+                <div class="tip-item">
+                    <i class="fas fa-plug"></i>
+                    <div class="tip-content">
+                        <h4>Fuente de Energía</h4>
+                        <p>Conecta la impresora a un regulador de voltaje. Evita apagones repentinos que pueden dañar componentes electrónicos.</p>
+                    </div>
+                </div>
+                
+                <div class="tip-item">
+                    <i class="fas fa-download"></i>
+                    <div class="tip-content">
+                        <h4>Actualizaciones</h4>
+                        <p>Mantén actualizados los drivers y el firmware de la impresora para mejorar rendimiento, seguridad y compatibilidad.</p>
+                    </div>
+                </div>
+                
+                <div class="tip-item">
+                    <i class="fas fa-cartridge"></i>
+                    <div class="tip-content">
+                        <h4>Consumibles Originales</h4>
+                        <p>Usa cartuchos y tóner originales o de marcas certificadas. Los productos genéricos pueden dañar la impresora y anular garantías.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <h3>Plan de Mantenimiento Mensual</h3>
+            <ul class="solution-box">
+                <li>Limpieza externa con paño seco</li>
+                <li>Limpieza de rodillos con paño humedecido</li>
+                <li>Verificación de niveles de tinta/tóner</li>
+                <li>Impresión de página de prueba</li>
+                <li>Revisión de actualizaciones de software</li>
+            </ul>
+            
+            <h3>Plan de Mantenimiento Anual</h3>
+            <ul class="solution-box">
+                <li>Limpieza profunda interna con aire comprimido</li>
+                <li>Lubricación de partes móviles (si aplica)</li>
+                <li>Calibración completa de color</li>
+                <li>Revisión de desgaste de componentes mecánicos</li>
+            </ul>
+        </section>
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetSection.offsetTop - 100,
+                    behavior: 'smooth'
+                });
+                
+                // Update active class
+                document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+        
+        // Update active nav link on scroll
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('nav a');
+            
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (pageYOffset >= (sectionTop - 150)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

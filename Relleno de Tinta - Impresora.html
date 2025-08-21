@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía Completa: Tinta de Impresoras y Relleno de Cartuchos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+            color: #333;
+            line-height: 1.6;
+            padding-bottom: 50px;
+        }
+        
+        header {
+            background: linear-gradient(90deg, #1a3a5f 0%, #2c5282 100%);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            transform: rotate(30deg);
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.4rem;
+            font-weight: 300;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 20px;
+        }
+        
+        .section {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            padding: 2.5rem;
+            margin-bottom: 2.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+        }
+        
+        h2 {
+            color: #2c5282;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 3px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+        }
+        
+        h2 i {
+            margin-right: 12px;
+            background: #ebf4ff;
+            padding: 10px;
+            border-radius: 50%;
+            color: #2c5282;
+        }
+        
+        h3 {
+            color: #1a3a5f;
+            font-size: 1.5rem;
+            margin: 1.8rem 0 1rem;
+            padding-left: 10px;
+            border-left: 4px solid #4299e1;
+        }
+        
+        p {
+            margin-bottom: 1.2rem;
+            font-size: 1.1rem;
+            color: #4a5568;
+        }
+        
+        ul, ol {
+            margin: 1.2rem 0;
+            padding-left: 1.8rem;
+        }
+        
+        li {
+            margin-bottom: 0.8rem;
+            padding-left: 0.5rem;
+        }
+        
+        .note-box {
+            background: #ebf8ff;
+            border-left: 4px solid #3182ce;
+            padding: 1.2rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .warning-box {
+            background: #fff5f5;
+            border-left: 4px solid #e53e3e;
+            padding: 1.2rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .tip-box {
+            background: #f0fff4;
+            border-left: 4px solid #48bb78;
+            padding: 1.2rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .ink-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .ink-type {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .ink-type:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.08);
+            border-color: #cbd5e0;
+        }
+        
+        .ink-type h4 {
+            color: #2b6cb0;
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .ink-type h4 i {
+            margin-right: 10px;
+        }
+        
+        .exercise-container {
+            background: #f0f9ff;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 2px dashed #90cdf4;
+        }
+        
+        .steps {
+            counter-reset: step-counter;
+        }
+        
+        .step {
+            display: flex;
+            margin-bottom: 1.5rem;
+            align-items: flex-start;
+        }
+        
+        .step::before {
+            counter-increment: step-counter;
+            content: counter(step-counter);
+            background: #2c5282;
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+            font-weight: bold;
+        }
+        
+        .materials {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .material-item {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1rem;
+            width: calc(33.333% - 1rem);
+            display: flex;
+            align-items: center;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        .material-item i {
+            font-size: 1.8rem;
+            margin-right: 12px;
+            color: #2c5282;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .comparison-table th {
+            background: #2c5282;
+            color: white;
+            padding: 1rem;
+            text-align: left;
+        }
+        
+        .comparison-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .comparison-table tr:nth-child(even) {
+            background: #f7fafc;
+        }
+        
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 3rem;
+            color: #718096;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .material-item {
+                width: calc(50% - 1rem);
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .subtitle {
+                font-size: 1.1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .material-item {
+                width: 100%;
+            }
+            
+            .section {
+                padding: 1.5rem;
+            }
+            
+            h2 {
+                font-size: 1.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1><i class="fas fa-print"></i> Guía Completa sobre Tinta de Impresoras</h1>
+            <p class="subtitle">Todo lo que necesitas saber sobre tipos de tinta, relleno de cartuchos y mantenimiento de impresoras</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <section class="section">
+            <h2><i class="fas fa-info-circle"></i> Introducción al Relleno de Tinta</h2>
+            <p>El relleno de tinta es el proceso de recargar cartuchos de impresora vacíos con tinta nueva, en lugar de comprar cartuchos nuevos. Esta práctica puede generar ahorros significativos y reducir el impacto ambiental.</p>
+            
+            <div class="note-box">
+                <p><strong>Importante:</strong> El relleno de cartuchos puede anular la garantía de algunas impresoras. Siempre verifica las políticas del fabricante antes de proceder.</p>
+            </div>
+            
+            <p>Esta guía te enseñará todo lo necesario sobre los diferentes tipos de tinta, cómo recargar cartuchos de forma segura y qué consideraciones debes tener al manipular tu impresora.</p>
+        </section>
+        
+        <section class="section">
+            <h2><i class="fas fa-vial"></i> Tipos de Tinta para Impresoras</h2>
+            <p>Existen diferentes tipos de tinta, cada uno con características específicas según el uso y tipo de impresión:</p>
+            
+            <div class="ink-grid">
+                <div class="ink-type">
+                    <h4><i class="fas fa-tint"></i> Tinta Dye-Based (Tintas al Dye)</h4>
+                    <p><strong>Composición:</strong> Colorantes solubles en agua.</p>
+                    <p><strong>Ventajas:</strong> Colores más vivos, menor costo, mejor para fotografías.</p>
+                    <p><strong>Desventajas:</strong> Menor resistencia al agua y a la luz solar.</p>
+                    <p><strong>Usos recomendados:</strong> Fotografías, gráficos a color, documentos internos.</p>
+                </div>
+                
+                <div class="ink-type">
+                    <h4><i class="fas fa-paint-brush"></i> Tinta Pigmentada</h4>
+                    <p><strong>Composición:</strong> Partículas sólidas suspendidas en líquido.</p>
+                    <p><strong>Ventajas:</strong> Mayor durabilidad, resistente al agua y a la luz.</p>
+                    <p><strong>Desventajas:</strong> Colores menos vibrantes, mayor costo.</p>
+                    <p><strong>Usos recomendados:</strong> Documentos importantes, archivos, impresiones que requieran durabilidad.</p>
+                </div>
+                
+                <div class="ink-type">
+                    <h4><i class="fas fa-fill-drip"></i> Tinta Sublimación</h4>
+                    <p><strong>Composición:</strong> Especial para transferencia a telas y objetos.</p>
+                    <p><strong>Ventajas:</strong> Alta calidad en textiles, colores intensos.</p>
+                    <p><strong>Desventajas:</strong> Requiere impresoras especiales, solo para usos específicos.</p>
+                    <p><strong>Usos recomendados:</strong> Camisetas, tazas, productos promocionales.</p>
+                </div>
+                
+                <div class="ink-type">
+                    <h4><i class="fas fa-industry"></i> Tinta UV</h4>
+                    <p><strong>Composición:</strong> Curada con luz ultravioleta.</p>
+                    <p><strong>Ventajas:</strong> Alta resistencia, se adhiere a múltiples superficies.</p>
+                    <p><strong>Desventajas:</strong> Equipos especializados, mayor costo.</p>
+                    <p><strong>Usos recomendados:</strong> Impresión industrial, señalética, materiales rígidos.</p>
+                </div>
+            </div>
+            
+            <h3>¿Cuándo usar cada tipo de tinta?</h3>
+            <table class="comparison-table">
+                <tr>
+                    <th>Tipo de Proyecto</th>
+                    <th>Tinta Recomendada</th>
+                    <th>Razón</th>
+                </tr>
+                <tr>
+                    <td>Fotografías de alta calidad</td>
+                    <td>Dye-Based</td>
+                    <td>Brinda colores más vivos y transiciones suaves</td>
+                </tr>
+                <tr>
+                    <td>Documentos importantes</td>
+                    <td>Pigmentada</td>
+                    <td>Mayor durabilidad y resistencia al agua</td>
+                </tr>
+                <tr>
+                    <td>Textiles y productos promocionales</td>
+                    <td>Sublimación</td>
+                    <td>Diseñada específicamente para transferencia a materiales</td>
+                </tr>
+                <tr>
+                    <td>Impresión sobre materiales no porosos</td>
+                    <td>UV</td>
+                    <td>Adherencia superior a superficies difíciles</td>
+                </tr>
+            </table>
+            
+            <div class="warning-box">
+                <p><strong>Advertencia:</strong> Nunca mezcles diferentes tipos de tinta en el mismo cartucho. Esto puede causar obstrucciones y daños permanentes a la impresora.</p>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2><i class="fas fa-sync-alt"></i> Cambiar el Tipo de Tinta en Impresoras</h2>
+            <p>¿Se puede modificar una impresora para usar otro tipo de tinta? La respuesta es compleja y depende de varios factores:</p>
+            
+            <h3>Consideraciones importantes</h3>
+            <ul>
+                <li><strong>Tipo de impresora:</strong> Las impresoras de inyección de tinta son más flexibles que las láser.</li>
+                <li><strong>Sistema de cabezales:</strong> Algunas impresoras tienen cabezales en los cartuchos, otras en la impresora.</li>
+                <li><strong>Garantía:</strong> Cualquier modificación generalmente anula la garantía.</li>
+                <li><strong>Riesgo de daños:</strong> Las tintas incompatibles pueden obstruir los cabezales permanentemente.</li>
+            </ul>
+            
+            <h3>Escenarios posibles</h3>
+            <div class="tip-box">
+                <p><strong>De pigmentada a dye-based:</strong> Es técnicamente posible pero requiere limpiar exhaustivamente el sistema. No recomendado por riesgo de obstrucciones.</p>
+            </div>
+            
+            <div class="warning-box">
+                <p><strong>De dye-based a pigmentada:</strong> Altamente desaconsejado. Las partículas de pigmento pueden obstruir los finos conductos diseñados para tintas líquidas.</p>
+            </div>
+            
+            <div class="note-box">
+                <p><strong>Sistemas de tinta continua:</strong> Estos sistemas modificados permiten usar diferentes tintas, pero deben instalarse específicamente para el tipo de tinta que usarás.</p>
+            </div>
+            
+            <p>En general, se recomienda usar el tipo de tinta especificado por el fabricante para evitar daños en la impresora y garantizar resultados óptimos.</p>
+        </section>
+        
+        <section class="section">
+            <h2><i class="fas fa-flask"></i> Ejercicio Práctico: Simulación de Relleno de Cartucho</h2>
+            <p>Realiza este ejercicio práctico para aprender el proceso de relleno de cartuchos sin necesidad de comprar tinta real. Usaremos agua coloreada con colorante alimenticio como sustituto seguro.</p>
+            
+            <div class="exercise-container">
+                <h3>Materiales necesarios:</h3>
+                <div class="materials">
+                    <div class="material-item">
+                        <i class="fas fa-syringe"></i>
+                        <div>Jeringa de 5-10ml</div>
+                    </div>
+                    <div class="material-item">
+                        <i class="fas fa-tint"></i>
+                        <div>Colorante alimenticio (rojo, azul, amarillo)</div>
+                    </div>
+                    <div class="material-item">
+                        <i class="fas fa-wine-bottle"></i>
+                        <div>Botella pequeña de agua</div>
+                    </div>
+                    <div class="material-item">
+                        <i class="fas fa-toilet-paper"></i>
+                        <div>Papel absorbente</div>
+                    </div>
+                    <div class="material-item">
+                        <i class="fas fa-box"></i>
+                        <div>Cartucho de tinta vacío</div>
+                    </div>
+                    <div class="material-item">
+                        <i class="fas fa-hands"></i>
+                        <div>Guantes de látex o nitrilo</div>
+                    </div>
+                </div>
+                
+                <h3>Preparación de la "tinta" simulada:</h3>
+                <ol>
+                    <li>Mezcla 50ml de agua con 5 gotas de colorante alimenticio (elige un color).</li>
+                    <li>Agita bien para obtener una solución homogénea.</li>
+                    <li>Repite para otros colores si tienes varios cartuchos.</li>
+                </ol>
+                
+                <h3>Pasos para el relleno simulado:</h3>
+                <div class="steps">
+                    <div class="step">
+                        <div>
+                            <strong>Prepara el área de trabajo:</strong> Cubre la superficie con papel absorbente para evitar manchas. Ponte los guantes.
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div>
+                            <strong>Identifica los orificios de llenado:</strong> Localiza los agujeros de llenado en la parte superior del cartucho (generalmente tapados con una esfera de metal o goma).
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div>
+                            <strong>Perfora cuidadosamente:</strong> Si el orificio está sellado, usa un alfiler limpio para hacer un pequeño agujero (solo para práctica).
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div>
+                            <strong>Carga la jeringa:</strong> Extrae 3-5ml de la solución coloreada con la jeringa.
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div>
+                            <strong>Inyecta lentamente:</strong> Inserta la aguja en el orificio e inyecta el líquido muy lentamente para evitar burbujas de aire.
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div>
+                            <strong>Limpia el exceso:</strong> Limpia cualquier derrame con papel absorbente.
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div>
+                            <strong>Prueba de salida:</strong> Presiona suavemente una toalla de papel contra el cabezal de impresión para ver si sale el líquido coloreado.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tip-box">
+                    <p><strong>Consejo didáctico:</strong> Para simular problemas comunes, introduce una pequeña burbuja de aire en la jeringa antes de inyectar y observa cómo afecta al flujo de "tinta".</p>
+                </div>
+            </div>
+            
+            <h3>¿Qué aprendemos con este ejercicio?</h3>
+            <ul>
+                <li>Técnica adecuada para rellenar cartuchos</li>
+                <li>Importancia de la limpieza en el proceso</li>
+                <li>Efecto de las burbujas de aire en el sistema</li>
+                <li>Manejo cuidadoso de componentes electrónicos</li>
+                <li>Prevención de derrames y contaminación cruzada</li>
+            </ul>
+        </section>
+        
+        <section class="section">
+            <h2><i class="fas fa-lightbulb"></i> Consejos y Buenas Prácticas</h2>
+            <h3>Mantenimiento de Impresoras</h3>
+            <ul>
+                <li>Realiza impresiones de prueba semanales para evitar obstrucciones</li>
+                <li>Usa la función de limpieza de cabezales solo cuando sea necesario</li>
+                <li>Almacena cartuchos extra en posición horizontal y en ambiente fresco</li>
+            </ul>
+            
+            <h3>Seguridad al manipular tintas</h3>
+            <ul>
+                <li>Siempre usa guantes para evitar contacto con la piel</li>
+                <li>Trabaja en un área bien ventilada</li>
+                <li>No ingerir ni inhalar vapores de tinta</li>
+                <li>Mantén las tintas fuera del alcance de niños</li>
+            </ul>
+            
+            <h3>Optimización de costos</h3>
+            <ul>
+                <li>Considera sistemas de tinta continua para alto volumen de impresión</li>
+                <li>Usa modos de borrador para documentos internos</li>
+                <li>Recicla cartuchos vacíos en centros especializados</li>
+            </ul>
+        </section>
+    </div>
+
+    <script>
+        // Efecto de scroll suave
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Animación para las secciones al hacer scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('.section');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            sections.forEach(section => {
+                section.style.opacity = 0;
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
