@@ -4,244 +4,525 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Guía Completa: Limpieza de Laptops</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary-color: #2c3e50;
-            --secondary-color: #3498db;
-            --accent-color: #e74c3c;
-            --light-color: #ecf0f1;
-            --dark-color: #34495e;
+            --primary: #4361ee;
+            --secondary: #3a0ca3;
+            --accent: #f72585;
+            --warning: #fca311;
+            --success: #2ec4b6;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gradient: linear-gradient(135deg, #4361ee, #3a0ca3);
         }
         
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
         
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            color: #333;
-            background-color: #f5f7fa;
+            color: var(--dark);
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
             padding: 20px;
         }
         
         .container {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
             background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
         }
         
         header {
+            background: var(--gradient);
+            color: white;
+            padding: 40px 30px;
             text-align: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 2px solid var(--secondary-color);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 60%);
+            transform: rotate(30deg);
         }
         
         h1 {
-            color: var(--primary-color);
-            margin-bottom: 10px;
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
+            border-radius: 50%;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .content {
+            padding: 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        
+        @media (max-width: 900px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .section {
+            margin-bottom: 30px;
         }
         
         h2 {
-            color: var(--secondary-color);
-            margin: 25px 0 15px;
-            padding-bottom: 5px;
-            border-bottom: 1px solid #eee;
+            color: var(--primary);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eee;
+            display: flex;
+            align-items: center;
+        }
+        
+        h2 i {
+            margin-right: 12px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
         
         h3 {
-            color: var(--dark-color);
-            margin: 20px 0 10px;
+            color: var(--secondary);
+            margin: 20px 0 12px;
+            display: flex;
+            align-items: center;
+        }
+        
+        h3 i {
+            margin-right: 10px;
+            color: var(--accent);
         }
         
         p {
             margin-bottom: 15px;
+            color: #444;
         }
         
-        ul, ol {
-            margin-bottom: 20px;
-            padding-left: 20px;
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid var(--primary);
+            margin-bottom: 25px;
+            transition: transform 0.3s ease;
         }
         
-        li {
-            margin-bottom: 8px;
+        .card:hover {
+            transform: translateY(-5px);
         }
         
         .warning {
-            background-color: #fff3e0;
-            border-left: 4px solid #ff9800;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 0 4px 4px 0;
+            border-left-color: var(--warning);
         }
         
         .important {
-            background-color: #e8f5e9;
-            border-left: 4px solid #4caf50;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 0 4px 4px 0;
+            border-left-color: var(--success);
         }
         
         .danger {
-            background-color: #ffebee;
-            border-left: 4px solid var(--accent-color);
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 0 4px 4px 0;
+            border-left-color: var(--accent);
         }
         
-        .step-box {
-            background-color: #f8f9fa;
-            padding: 20px;
-            border-radius: 8px;
-            margin: 20px 0;
-            border: 1px solid #e9ecef;
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
         }
         
-        .tools-list {
+        .card-icon {
+            font-size: 1.5rem;
+            margin-right: 12px;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            border-radius: 50%;
+            background: rgba(67, 97, 238, 0.1);
+            color: var(--primary);
+        }
+        
+        .warning .card-icon {
+            background: rgba(252, 163, 17, 0.1);
+            color: var(--warning);
+        }
+        
+        .important .card-icon {
+            background: rgba(46, 196, 182, 0.1);
+            color: var(--success);
+        }
+        
+        .danger .card-icon {
+            background: rgba(247, 37, 133, 0.1);
+            color: var(--accent);
+        }
+        
+        .tools-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
             gap: 15px;
             margin: 20px 0;
         }
         
         .tool-item {
-            background: #f1f8ff;
-            padding: 10px;
-            border-radius: 5px;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
             text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border: 1px solid #eee;
+        }
+        
+        .tool-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            border-color: var(--primary);
+        }
+        
+        .tool-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        .step-box {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 1px solid #e9ecef;
+            position: relative;
+        }
+        
+        .step-number {
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            width: 40px;
+            height: 40px;
+            background: var(--gradient);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        ol, ul {
+            padding-left: 25px;
+            margin-bottom: 20px;
+        }
+        
+        li {
+            margin-bottom: 10px;
+            position: relative;
+        }
+        
+        .maintenance-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .maintenance-item {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .maintenance-item h4 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .maintenance-item h4 i {
+            margin-right: 10px;
         }
         
         footer {
             text-align: center;
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid #eee;
-            color: #7f8c8d;
-            font-size: 0.9em;
+            padding: 30px;
+            background: var(--dark);
+            color: white;
         }
         
-        @media (max-width: 768px) {
-            .tools-list {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            }
+        .btn {
+            display: inline-block;
+            background: var(--gradient);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            margin-top: 20px;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        
+        .problem-item {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid var(--primary);
+        }
+        
+        .problem-item h4 {
+            color: var(--primary);
+            margin-bottom: 15px;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
+            <div class="header-icon">
+                <i class="fas fa-laptop"></i>
+            </div>
             <h1>Guía Completa para la Limpieza de una Laptop</h1>
-            <p>Mantenimiento adecuado para prolongar la vida útil de tu equipo</p>
+            <p class="subtitle">Mantenimiento adecuado para prolongar la vida útil de tu equipo</p>
         </header>
         
-        <section>
-            <h2>Introducción</h2>
-            <p>Realizar una limpieza regular a tu laptop es esencial para mantener su rendimiento y prolongar su vida útil. El polvo, la suciedad y los residuos pueden afectar el funcionamiento del equipo, causar sobrecalentamiento y dañar componentes internos. Esta guía te enseñará cómo limpiar tu laptop de manera segura y efectiva.</p>
-            
-            <div class="warning">
-                <h3>⚠️ Importante</h3>
-                <p>Antes de comenzar, investiga el modelo específico de tu laptop. Algunos modelos tienen particularidades en su desensamble. Busca en Internet: "[Modelo de tu laptop] desensamblaje guía" o "[Modelo de tu laptop] teardown". YouTube es un excelente recurso para encontrar videos tutoriales.</p>
+        <div class="content">
+            <div>
+                <div class="section">
+                    <h2><i class="fas fa-info-circle"></i> Introducción</h2>
+                    <p>Realizar una limpieza regular a tu laptop es esencial para mantener su rendimiento y prolongar su vida útil. El polvo, la suciedad y los residuos pueden afectar el funcionamiento del equipo, causar sobrecalentamiento y dañar componentes internos.</p>
+                    
+                    <div class="card warning">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <h3>Importante</h3>
+                        </div>
+                        <p>Antes de comenzar, investiga el modelo específico de tu laptop. Algunos modelos tienen particularidades en su desensamble. Busca en Internet: "[Modelo de tu laptop] desensamblaje guía" o "[Modelo de tu laptop] teardown". YouTube es un excelente recurso para encontrar videos tutoriales.</p>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h2><i class="fas fa-tools"></i> Preparación y Herramientas</h2>
+                    <p>Reúne estos materiales antes de comenzar:</p>
+                    
+                    <div class="tools-grid">
+                        <div class="tool-item">
+                            <div class="tool-icon">
+                                <i class="fas fa-screwdriver"></i>
+                            </div>
+                            <p>Destornilladores de precisión</p>
+                        </div>
+                        <div class="tool-item">
+                            <div class="tool-icon">
+                                <i class="fas fa-wind"></i>
+                            </div>
+                            <p>Aire comprimido</p>
+                        </div>
+                        <div class="tool-item">
+                            <div class="tool-icon">
+                                <i class="fas fa-tint-slash"></i>
+                            </div>
+                            <p>Alcohol isopropílico</p>
+                        </div>
+                        <div class="tool-item">
+                            <div class="tool-icon">
+                                <i class="fas fa-paint-brush"></i>
+                            </div>
+                            <p>Pinceles suaves</p>
+                        </div>
+                        <div class="tool-item">
+                            <div class="tool-icon">
+                                <i class="fas fa-hand-paper"></i>
+                            </div>
+                            <p>Pulsera antiestática</p>
+                        </div>
+                        <div class="tool-item">
+                            <div class="tool-icon">
+                                <i class="fas fa-paste"></i>
+                            </div>
+                            <p>Pasta térmica</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card danger">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <i class="fas fa-radiation"></i>
+                            </div>
+                            <h3>Qué NO usar</h3>
+                        </div>
+                        <p>Nunca uses productos de limpieza domésticos, agua del grifo, paños abrasivos, aspiradoras convencionales (pueden generar estática) o disolventes agresivos como acetona.</p>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h2><i class="fas fa-wrench"></i> Proceso de Limpieza</h2>
+                    
+                    <h3><i class="fas fa-1"></i> Preparación inicial</h3>
+                    <div class="step-box">
+                        <div class="step-number">1</div>
+                        <ol>
+                            <li>Apaga completamente la laptop y desconéctala de la corriente eléctrica.</li>
+                            <li>Retira la batería (si es extraíble).</li>
+                            <li>Mantén presionado el botón de encendido durante 10 segundos para descargar cualquier energía residual.</li>
+                            <li>Trabaja en un área bien iluminada con espacio suficiente.</li>
+                            <li>Usa una pulsera antiestática o toca una superficie metálica para descargar la electricidad estática de tu cuerpo.</li>
+                        </ol>
+                    </div>
+                    
+                    <h3><i class="fas fa-2"></i> Limpieza externa</h3>
+                    <div class="step-box">
+                        <div class="step-number">2</div>
+                        <ol>
+                            <li>Humedece ligeramente un paño de microfibra con alcohol isopropílico.</li>
+                            <li>Limpia la carcasa exterior, evitando que líquido entre en las rendijas.</li>
+                            <li>Para las áreas difíciles, usa un hisopo ligeramente humedecido.</li>
+                            <li>Seca completamente con la parte seca del paño.</li>
+                        </ol>
+                    </div>
+                </div>
             </div>
-        </section>
+            
+            <div>
+                <div class="section">
+                    <h3><i class="fas fa-3"></i> Limpieza de teclado y pantalla</h3>
+                    <div class="step-box">
+                        <div class="step-number">3</div>
+                        <ol>
+                            <li>Voltea la laptop y golpea suavemente el reverso para sacar migajas y partículas.</li>
+                            <li>Usa aire comprimido en ángulo para limpiar entre las teclas (sostén la lata en posición vertical).</li>
+                            <li>Para la pantalla, usa un paño de microfibra seco. Si hay manchas persistentes, humedece ligeramente el paño con agua destilada o solución limpiadora específica para pantallas.</li>
+                            <li>Nunca apliques líquido directamente sobre la pantalla.</li>
+                        </ol>
+                    </div>
+                    
+                    <h3><i class="fas fa-4"></i> Limpieza interna (avanzado)</h3>
+                    <div class="step-box">
+                        <div class="step-number">4</div>
+                        <ol>
+                            <li>Investiga previamente cómo desarmar tu modelo específico de laptop.</li>
+                            <li>Retira los tornillos cuidadosamente y organízalos en orden para facilitar el reensamblaje.</li>
+                            <li>Una vez abierta, usa aire comprimido para eliminar el polvo de los componentes.</li>
+                            <li>Para el ventilador, mantén las aspas con un palillo para que no giren demasiado rápido al aplicar el aire.</li>
+                            <li>Usa pinceles suaves para remover el polvo persistente.</li>
+                            <li>Si es necesario, aplica pasta térmica nueva al procesador (elimina completamente la anterior primero).</li>
+                            <li>Reensambla cuidadosamente, asegurándote de que todos los conectores estén bien colocados.</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="card important">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <h3>Consejos importantes</h3>
+                        </div>
+                        <p>Toma fotos durante el desensamblaje para recordar la ubicación de componentes y cables. Si no te sientes seguro desarmando tu laptop, limita la limpieza al exterior o busca ayuda profesional.</p>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h2><i class="fas fa-calendar-alt"></i> Mantenimiento Regular</h2>
+                    
+                    <div class="maintenance-list">
+                        <div class="maintenance-item">
+                            <h4><i class="fas fa-calendar-day"></i> Diario</h4>
+                            <p>Limpia el teclado y la superficie con un paño seco.</p>
+                        </div>
+                        <div class="maintenance-item">
+                            <h4><i class="fas fa-calendar-week"></i> Semanal</h4>
+                            <p>Limpieza más profunda del teclado con aire comprimido.</p>
+                        </div>
+                        <div class="maintenance-item">
+                            <h4><i class="fas fa-calendar"></i> Mensual</h4>
+                            <p>Limpieza de pantalla y puertos.</p>
+                        </div>
+                        <div class="maintenance-item">
+                            <h4><i class="fas fa-calendar-check"></i> Anual</h4>
+                            <p>Limpieza interna profunda (cada 6 meses si hay mascotas/fumar).</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h2><i class="fas fa-exclamation-triangle"></i> Problemas Comunes</h2>
+                    
+                    <div class="problem-grid">
+                        <div class="problem-item">
+                            <h4>Sobrecalentamiento</h4>
+                            <p>Generalmente causado por acumulación de polvo en ventiladores y disipadores. Solución: Limpieza interna.</p>
+                        </div>
+                        <div class="problem-item">
+                            <h4>Teclas que no responden</h4>
+                            <p>A menudo por residuos bajo las teclas. Solución: Limpieza con aire comprimido o retiro cuidadoso de teclas.</p>
+                        </div>
+                        <div class="problem-item">
+                            <h4>Rendimiento lento</h4>
+                            <p>Puede deberse a sobrecalentamiento que causa throttling. Solución: Limpieza interna y posible reemplazo de pasta térmica.</p>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
         
-        <section>
-            <h2>Preparación y Herramientas Necesarias</h2>
-            <p>Reúne estos materiales antes de comenzar:</p>
-            
-            <div class="tools-list">
-                <div class="tool-item">Destornilladores de precisión</div>
-                <div class="tool-item">Pulsera antiestática (recomendado)</div>
-                <div class="tool-item">Aire comprimido (en lata)</div>
-                <div class="tool-item">Alcohol isopropílico (70% o más)</div>
-                <div class="tool-item">Hisopos de algodón</div>
-                <div class="tool-item">Paños de microfibra</div>
-                <div class="tool-item">Pinceles suaves</div>
-                <div class="tool-item">Pasta térmica (si planeas reemplazarla)</div>
-            </div>
-            
-            <div class="danger">
-                <h3>❌ Qué NO usar</h3>
-                <p>Nunca uses productos de limpieza domésticos, agua del grifo, paños abrasivos, aspiradoras convencionales (pueden generar estática) o disolventes agresivos como acetona.</p>
-            </div>
-        </section>
-        
-        <section>
-            <h2>Proceso de Limpieza Paso a Paso</h2>
-            
-            <h3>1. Preparación inicial</h3>
-            <div class="step-box">
-                <ol>
-                    <li>Apaga completamente la laptop y desconéctala de la corriente eléctrica.</li>
-                    <li>Retira la batería (si es extraíble).</li>
-                    <li>Mantén presionado el botón de encendido durante 10 segundos para descargar cualquier energía residual.</li>
-                    <li>Trabaja en un área bien iluminada con espacio suficiente.</li>
-                    <li>Usa una pulsera antiestática o toca una superficie metálica para descargar la electricidad estática de tu cuerpo.</li>
-                </ol>
-            </div>
-            
-            <h3>2. Limpieza externa</h3>
-            <div class="step-box">
-                <ol>
-                    <li>Humedece ligeramente un paño de microfibra con alcohol isopropílico.</li>
-                    <li>Limpia la carcasa exterior, evitando que líquido entre en las rendijas.</li>
-                    <li>Para las áreas difíciles, usa un hisopo ligeramente humedecido.</li>
-                    <li>Seca completamente con la parte seca del paño.</li>
-                </ol>
-            </div>
-            
-            <h3>3. Limpieza de teclado y pantalla</h3>
-            <div class="step-box">
-                <ol>
-                    <li>Voltea la laptop y golpea suavemente el reverso para sacar migajas y partículas.</li>
-                    <li>Usa aire comprimido en ángulo para limpiar entre las teclas (sostén la lata en posición vertical).</li>
-                    <li>Para la pantalla, usa un paño de microfibra seco. Si hay manchas persistentes, humedece ligeramente el paño con agua destilada o solución limpiadora específica para pantallas.</li>
-                    <li>Nunca apliques líquido directamente sobre la pantalla.</li>
-                </ol>
-            </div>
-            
-            <h3>4. Limpieza interna (avanzado)</h3>
-            <div class="step-box">
-                <ol>
-                    <li>Investiga previamente cómo desarmar tu modelo específico de laptop.</li>
-                    <li>Retira los tornillos cuidadosamente y organízalos en orden para facilitar el reensamblaje.</li>
-                    <li>Una vez abierta, usa aire comprimido para eliminar el polvo de los componentes.</li>
-                    <li>Para el ventilador, mantén las aspas con un palillo para que no giren demasiado rápido al aplicar el aire.</li>
-                    <li>Usa pinceles suaves para remover el polvo persistente.</li>
-                    <li>Si es necesario, aplica pasta térmica nueva al procesador (elimina completamente la anterior primero).</li>
-                    <li>Reensambla cuidadosamente, asegurándote de que todos los conectores estén bien colocados.</li>
-                </ol>
-            </div>
-            
-            <div class="important">
-                <h3>✅ Consejos importantes</h3>
-                <p>Toma fotos durante el desensamblaje para recordar la ubicación de componentes y cables. Si no te sientes seguro desarmando tu laptop, limita la limpieza al exterior o busca ayuda profesional.</p>
-            </div>
-        </section>
-        
-        <section>
-            <h2>Mantenimiento Regular</h2>
-            <ul>
-                <li><strong>Diario:</strong> Limpia el teclado y la superficie con un paño seco.</li>
-                <li><strong>Semanal:</strong> Limpieza más profunda del teclado con aire comprimido.</li>
-                <li><strong>Mensual:</strong> Limpieza de pantalla y puertos.</li>
-                <li><strong>Anual (o cada 6 meses si hay mascotas/fumar):</strong> Limpieza interna profunda.</li>
-            </ul>
-        </section>
-        
-        <section>
-            <h2>Problemas Comunes y Soluciones</h2>
-            <p><strong>Sobrecalentamiento:</strong> Generalmente causado por acumulación de polvo en ventiladores y disipadores. Solución: Limpieza interna.</p>
-            <p><strong>Teclas que no responden:</strong> A menudo por residuos bajo las teclas. Solución: Limpieza con aire comprimido o retiro cuidadoso de teclas (investiga cómo hacerlo para tu modelo).</p>
-            <p><strong>Rendimiento lento:</strong> Puede deberse a sobrecalentamiento que causa throttling. Solución: Limpieza interna y posible reemplazo de pasta térmica.</p>
-        </section>
     </div>
 </body>
 </html>
